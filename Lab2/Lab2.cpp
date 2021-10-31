@@ -6,24 +6,22 @@
 
 
 int variant();
-void f1(int** count);
-void f2(int** count);
-void f3(int** count);
-void f4(int** count);
-void f5(int** count);
-void f6(int** count);
-void f7(int** count);
-void f8(int** count);
-void f9(int** count);
-void f10(int** count);
+void f1(int* count);
+void f2(int* count);
+void f3(int* count);
+void f4(int* count);
+void f5(int* count);
+void f6(int* count);
+void f7(int* count);
+void f8(int* count);
+void f9(int* count);
+void f10(int* count);
 
 int main() {
 	setlocale(LC_ALL, "Rus");
 	int var = 0;
-	int i;
-	int *count = NULL;
-	count = malloc(sizeof(int) * 10);
-	for (i = 0; i < 10; i++) {
+	int* count = malloc(sizeof(int) * 10);
+	for (int i = 0; i < 10; i++) {
 		count[i] = 0;
 	}
 
@@ -44,61 +42,61 @@ int main() {
 
 		case 1:
 			printf_s("Вызвана Функция 1\n");
-			f1(&count);
+			f1(count);
 			system("pause");
 			break;
 
 		case 2:
 			printf_s("Вызвана Функция 2\n");
-			f2(&count);
+			f2(count);
 			system("pause");
 			break;
 
 		case 3:
 			printf_s("Вызвана Функция 3\n");
-			f3(&count);
+			f3(count);
 			system("pause");
 			break;
 
 		case 4:
 			printf_s("Вызвана Функция 4\n");
-			f4(&count);
+			f4(count);
 			system("pause");
 			break;
 
 		case 5:
 			printf_s("Вызвана Функция 5\n");
-			f5(&count);
+			f5(count);
 			system("pause");
 			break;
 
 		case 6:
 			printf_s("Вызвана Функция 6\n");
-			f6(&count);
+			f6(count);
 			system("pause");
 			break;
 
 		case 7:
 			printf_s("Вызвана Функция 7\n");
-			f7(&count);
+			f7(count);
 			system("pause");
 			break;
 
 		case 8:
 			printf_s("Вызвана Функция 8\n");
-			f8(&count);
+			f8(count);
 			system("pause");
 			break;
 
 		case 9:
 			printf_s("Вызвана Функция 9\n");
-			f9(&count);
+			f9(count);
 			system("pause");
 			break;
 
 		case 10:
 			printf_s("Вызвана Функция 10\n");
-			f10(&count);
+			f10(count);
 			system("pause");
 			break;
 		}
@@ -122,14 +120,13 @@ int variant() {
 }
 
 
-void f1(int** count) {
+void f1(int* count) {
 	int n;
 	int s;
 	int a;
 	int k;
 	scanf_s("Введите число: %d\n", &a);
-	for (n = a, s = 0; n != 0; n = n / 10)
-	{
+	for (n = a, s = 0; n != 0; n = n / 10) {
 		k = n % 10;
 		s = s + k;
 	}
@@ -138,7 +135,7 @@ void f1(int** count) {
 
 }
 
-void f2(int** count) {
+void f2(int* count) {
 	int n;
 	int s;
 	int a;
@@ -150,11 +147,11 @@ void f2(int** count) {
 		if (k > s) s = k;
 
 	}
-	*(count+1) += 1;
+	*(count + 1) += 1;
 	printf_s("Результат: %d\n", s);
 }
 
-void f3(int** count) {
+void f3(int* count) {
 	int m;
 	int n;
 	int j;
@@ -162,7 +159,7 @@ void f3(int** count) {
 
 	printf_s("Введите количество элементов массива:\n");
 	scanf_s("%d\n", &n);
-	
+
 	int* A = NULL;
 	A = malloc(sizeof(int) * n);
 
@@ -173,11 +170,11 @@ void f3(int** count) {
 	}
 
 	for (i = 0; i < n; i++) {
-		for (m = 2; m < *(A+i); m++)
+		for (m = 2; m < *(A + i); m++)
 		{
 			if (*(A + i) % m == 0) break;
 		}
-		if (m == *(A+i)) {
+		if (m == *(A + i)) {
 			for (j = i; j < n - 1; j++) A[j] = *(A + j);
 			n--;
 			i--;
@@ -186,13 +183,13 @@ void f3(int** count) {
 	*(count + 2) += 1;
 	printf_s("Результат:\n");
 	for (i = 0; i < n; i++) {
-		printf_s("%d\n", *(A+i));
+		printf_s("%d\n", *(A + i));
 	}
 
 }
-void f4(int** count) {//не понимаю как обозвать переменные, кроме как по имени
+void f4(int* count) {//не понимаю как обозвать переменные, кроме как по имени
 	int i;
-	
+
 	int n;
 	int val;
 	int m;
@@ -201,7 +198,7 @@ void f4(int** count) {//не понимаю как обозвать переме
 	scanf_s("%d\n", &n);
 
 	int* A = NULL;
-	A = malloc(sizeof(int) * (n-1));
+	A = malloc(sizeof(int) * (n - 1));
 
 	printf_s("Введите val:\n");//не знаю что такое val
 	scanf_s("%d\n", &val);
@@ -210,19 +207,19 @@ void f4(int** count) {//не понимаю как обозвать переме
 		val /= m;
 		A[i] = m;
 	}
-	
+
 	A[i] = 0;
 	*(count + 3) += 1;
 	printf_s("Результат:\n");
 	for (i = 0; i < n - 1; i++) {
-		printf_s("% d\n", *(A+i));
+		printf_s("% d\n", *(A + i));
 	}
 
 }
-void f5(int** count) {
+void f5(int* count) {
 	int i;
 	int k;
-	int A[10]; 
+	int A[10];
 	printf_s("Введите массив, состоящий из 10 элементов:\n");
 	for (i = 0; i < 10; i++) {
 		scanf_s("%d\n", &A[i]);
@@ -238,7 +235,7 @@ void f5(int** count) {
 	printf_s("Результат:\n");
 	printf_s("%d\n", k);
 }
-void f6(int** count) {
+void f6(int* count) {
 	int i;
 	int k;
 	int A[10];
@@ -253,7 +250,7 @@ void f6(int** count) {
 	printf_s("Результат:\n");
 	printf_s("%d\n", k);
 }
-void f7(int** count) {
+void f7(int* count) {
 	int i;
 	int s;
 	int n;
@@ -262,7 +259,7 @@ void f7(int** count) {
 	scanf_s("%d\n", &n);
 
 	int* A = NULL;
-	A = malloc(sizeof(int) * (n - 1));
+	A = malloc(sizeof(int) * (n));
 
 	printf_s("Введите массив чисел, состоящий из %d элементов:\n", n);
 	for (i = 0; i < n; i++) {
@@ -273,7 +270,7 @@ void f7(int** count) {
 	printf_s("Результат:\n");
 	printf_s("%d\n", s);
 }
-void f8(int** count) {
+void f8(int* count) {
 	int s;
 	int n;
 	int a;
@@ -286,7 +283,7 @@ void f8(int** count) {
 	if (s == 0) puts("Good\n");
 	*(count + 7) += 1;
 }
-void f9(int** count) {
+void f9(int* count) {
 	int i;
 	int n;
 	printf_s("Введите количество элементов массива:\n");
@@ -304,7 +301,7 @@ void f9(int** count) {
 	if (i == n) puts("Good\n");
 	*(count + 8) += 1;
 }
-void f10(int** count) {
+void f10(int* count) {
 	int i;
 	int s;
 	int A[10];
@@ -318,6 +315,6 @@ void f10(int** count) {
 	*(count + 9) += 1;
 	printf_s("Результат:\n");
 	for (i = 0; i < 10; i++) {
-		printf_s("% d\n", *(A+i));
+		printf_s("% d\n", *(A + i));
 	}
 }
