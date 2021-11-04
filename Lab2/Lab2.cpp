@@ -35,7 +35,7 @@ int main() {
 
 			printf_s("Вывести количество выводов функций:\n");
 			for (int i = 0; i < 10; i++) {
-				printf_s("% d\n", count[i]);
+				printf_s("Функция %d была вызвала %d раз\n", i, count[i]);
 			}
 			system("pause");
 			break;
@@ -120,12 +120,14 @@ int variant() {
 }
 
 
-void f1(int* count) {
+void f1(int* count) { 
 	int n;
 	int s;
 	int a;
 	int k;
-	scanf_s("Введите число: %d\n", &a);
+	printf_s("Функция ищет сумму цифр числа\n");
+	printf_s("Введите число:\n");
+	scanf_s("%d", &a);
 	for (n = a, s = 0; n != 0; n = n / 10) {
 		k = n % 10;
 		s = s + k;
@@ -135,12 +137,14 @@ void f1(int* count) {
 
 }
 
-void f2(int* count) {
+void f2(int* count) { 
 	int n;
 	int s;
 	int a;
 	int k;
-	scanf_s("Введите число: %d\n", &a);
+	printf_s("Функция ищет большую цифру в числе\n");
+	printf_s("Введите число:\n");
+	scanf_s("%d", &a);
 	for (n = a, s = 0; n != 0; n = n / 10)
 	{
 		k = n % 10;
@@ -151,31 +155,31 @@ void f2(int* count) {
 	printf_s("Результат: %d\n", s);
 }
 
-void f3(int* count) {
+void f3(int* count) { 
 	int m;
 	int n;
 	int j;
 	int i;
-
+	printf_s("Функция выводит все непростые числе из массива\n");
 	printf_s("Введите количество элементов массива:\n");
-	scanf_s("%d\n", &n);
+	scanf_s("%d", &n);
 
 	int* A = NULL;
-	A = malloc(sizeof(int) * n);
+	A = (int*)malloc(sizeof(int) * n);
 
 	printf_s("Введите массив чисел, состоящий из %d элементов:\n", n);
 
 	for (i = 0; i < n; i++) {
-		scanf_s("%d\n", A[i]);
+		scanf_s("%d", &A[i]);
 	}
 
 	for (i = 0; i < n; i++) {
-		for (m = 2; m < *(A + i); m++)
+		for (m = 2; m < A[i]; m++)
 		{
-			if (*(A + i) % m == 0) break;
+			if (A[i] % m == 0) break;
 		}
-		if (m == *(A + i)) {
-			for (j = i; j < n - 1; j++) A[j] = *(A + j);
+		if (m == A[i]) {
+			for (j = i; j < n - 1; j++) A[j] = A[j + 1];
 			n--;
 			i--;
 		}
@@ -183,11 +187,11 @@ void f3(int* count) {
 	*(count + 2) += 1;
 	printf_s("Результат:\n");
 	for (i = 0; i < n; i++) {
-		printf_s("%d\n", *(A + i));
+		printf_s("%d\n", A[i]);
 	}
 
 }
-void f4(int* count) {//не понимаю как обозвать переменные, кроме как по имени
+void f4(int* count) {//
 	int i;
 
 	int n;
@@ -195,13 +199,13 @@ void f4(int* count) {//не понимаю как обозвать переме�
 	int m;
 
 	printf_s("Введите n:\n");//не знаю что такое n
-	scanf_s("%d\n", &n);
+	scanf_s("%d", &n);
 
 	int* A = NULL;
-	A = malloc(sizeof(int) * (n - 1));
+	A = (int*)malloc(sizeof(int) * (n - 1));
 
-	printf_s("Введите val:\n");//не знаю что такое val
-	scanf_s("%d\n", &val);
+	printf_s("Введите число:\n");
+	scanf_s("%d", &val);
 	for (i = 0; (i < n - 1) && (val != 1); i++) {
 		for (m = 2; val % m != 0; m++);
 		val /= m;
@@ -212,7 +216,7 @@ void f4(int* count) {//не понимаю как обозвать переме�
 	*(count + 3) += 1;
 	printf_s("Результат:\n");
 	for (i = 0; i < n - 1; i++) {
-		printf_s("% d\n", *(A + i));
+		printf_s("%d\n", A[i]);
 	}
 
 }
@@ -220,9 +224,10 @@ void f5(int* count) {
 	int i;
 	int k;
 	int A[10];
+	printf_s("Функция выводит наименьшее неотрицательное число\n");
 	printf_s("Введите массив, состоящий из 10 элементов:\n");
 	for (i = 0; i < 10; i++) {
-		scanf_s("%d\n", &A[i]);
+		scanf_s("%d", &A[i]);
 	}
 	for (i = 0, k = -1; i < 10; i++) {
 		if (A[i] < 0) continue;
@@ -233,37 +238,38 @@ void f5(int* count) {
 
 	*(count + 4) += 1;
 	printf_s("Результат:\n");
-	printf_s("%d\n", k);
+	printf_s("%d\n", A[k]);
 }
 void f6(int* count) {
 	int i;
 	int k;
 	int A[10];
+	printf_s("Функция выводит наибольшее число\n");
 	printf_s("Введите массив, состоящий из 10 элементов:\n");
 	for (i = 0; i < 10; i++) {
-		scanf_s("%d\n", &A[i]);
+		scanf_s("%d", &A[i]);
 	}
 	for (i = 1, k = 0; i < 10; i++)
 		if (A[i] > A[k]) k = i;
 
 	*(count + 5) += 1;
 	printf_s("Результат:\n");
-	printf_s("%d\n", k);
+	printf_s("%d\n", A[k]);
 }
 void f7(int* count) {
 	int i;
 	int s;
 	int n;
-
+	printf_s("Функция выводит сумму элементов массива\n");
 	printf_s("Введите количество элементов массива:\n");
-	scanf_s("%d\n", &n);
+	scanf_s("%d", &n);
 
 	int* A = NULL;
-	A = malloc(sizeof(int) * (n));
+	A = (int*)malloc(sizeof(int) * (n));
 
 	printf_s("Введите массив чисел, состоящий из %d элементов:\n", n);
 	for (i = 0; i < n; i++) {
-		scanf_s("%d\n", &A[i]);
+		scanf_s("%d", &A[i]);
 	}
 	for (s = 0, i = 0; i < n; i++) s = s + A[i];
 	*(count + 6) += 1;
@@ -274,8 +280,9 @@ void f8(int* count) {
 	int s;
 	int n;
 	int a;
+	printf_s("Функция проверяет число на простоту\n");
 	printf_s("Введите число:\n");
-	scanf_s("%d\n", &a);
+	scanf_s("%d", &a);
 	for (s = 0, n = 2; n < a; n++)
 	{
 		if (a % n == 0) s++;
@@ -286,15 +293,16 @@ void f8(int* count) {
 void f9(int* count) {
 	int i;
 	int n;
+	printf_s("Функция проверяет на положительность все числа в массиве\n");
 	printf_s("Введите количество элементов массива:\n");
-	scanf_s("%d\n", &n);
+	scanf_s("%d", &n);
 
 	int* A = NULL;
-	A = malloc(sizeof(int) * (n - 1));
+	A = (int*)malloc(sizeof(int) * (n - 1));
 
 	printf_s("Введите массив чисел, состоящий из %d элементов:\n", n);
 	for (i = 0; i < n; i++) {
-		scanf_s("%d\n", &A[i]);
+		scanf_s("%d", &A[i]);
 	}
 	for (i = 0; i < n; i++)
 		if (A[i] < 0) break;
@@ -305,9 +313,10 @@ void f10(int* count) {
 	int i;
 	int s;
 	int A[10];
+	printf_s("Функция переставляет первый элемент массива в конец\n");
 	printf_s("Введите массив, состоящий из 10 элементов:\n");
 	for (i = 0; i < 10; i++) {
-		scanf_s("%d\n", &A[i]);
+		scanf_s("%d", &A[i]);
 	}
 	for (s = A[0], i = 1; i < 10; i++)
 		A[i - 1] = A[i];
@@ -315,6 +324,6 @@ void f10(int* count) {
 	*(count + 9) += 1;
 	printf_s("Результат:\n");
 	for (i = 0; i < 10; i++) {
-		printf_s("% d\n", *(A + i));
+		printf_s("%d\n", A[i]);
 	}
 }
